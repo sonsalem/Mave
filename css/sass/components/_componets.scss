@@ -1,0 +1,50 @@
+.pointer {
+  cursor: pointer;
+}
+.t-tranintion {
+  @include prefixer(transition, var(--transtion));
+}
+%gradText {
+  @include gradient(120deg, $yellowColor, $orangeColor, $redColor);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+%before {
+  content: "";
+  position: absolute;
+}
+.w-fit {
+  width: fit-content;
+}
+.pt-main {
+  padding-top: $paddingSpacing;
+}
+.pb-main {
+  padding-bottom: $paddingSpacing;
+}
+.main-heading {
+  .title {
+    @extend %gradText;
+    width: fit-content;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .heading {
+    @include breakpoints(medium) {
+      font-size: 45px
+    };
+    line-height: 1.2;
+    margin-bottom: 30px;
+    font: {
+      size: 28px;
+      weight:900;
+    };
+  }
+}
+.grey-p {
+  color: $greyColor;
+  line-height: 1.7;
+}
+.bg-sec {
+  background: $bgSections;
+}

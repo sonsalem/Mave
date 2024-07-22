@@ -1,0 +1,15 @@
+// Import Helpers
+@import 'sass/helpers/variuables';
+@import 'sass/helpers/mixins';
+
+
+// Import Pages
+@import 'sass/layout/gloabel_rules';
+@import 'sass/layout/header';
+@import 'sass/pages/homepgae';
+
+  // Import Components
+  @import 'sass/components/componets';
+@import 'sass/components/buttons';
+
+@import 'sass/layout/footer';

@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');
+
+/* Strat Landing */
+.landing {
+
+  padding-block-start: 300px;
+  background: url("../img/banner-bg-2.jpg") center center / cover no-repeat fixed;
+  position: relative;
+
+  &::before {
+    @extend %before;
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+    z-index: 0;
+    @include overlay($constHeader, .4);
+  }
+
+  .heading {
+    h1 {
+      font-weight: 900;
+    }
+  }
+
+  .scroller {
+    max-width: 100%;
+    margin-block: 40px 0;
+    translate: 0 50%;
+    overflow: clip;
+    @include gradient(120deg, $yellowColor ,$orangeColor, $redColor);
+    mask: linear-gradient(90deg,transparent, white 7%, white 93%, transparent);
+
+    .scroller-inner {
+      $gapSroller: 3rem !global;
+      padding: 27px 0;
+      gap: $gapSroller;
+      width: max-content;
+      @include prefixer(animation, scrollX 20s linear infinite)
+    }
+
+  }
+
+}
+
+/* Start Animation */
+@include keyFrame (scrollX) {
+  to {
+    transform: translate(calc(-50% - ($gapSroller / 2)));
+  }
+}
+/* End Animation */
+/* End Landing */
+/* Strat About */
+.about {
+  @include breakpoints(medium) {
+    .image::before {
+      content: "";
+      position: absolute;
+      background: rgba(255,255,255,.1);
+      top: 50%; left: 50%;
+      translate: -50% -50%;
+      z-index: -1;
+      @include circle(440px);
+    }
+  }
+  .socials {
+    a {
+      @include circle(38px);
+      @include centering;
+      @include beforeBackground(135deg, $pinkColor, $purpleColor);
+      background: $white;
+      img.edit {
+        @include circle(25px);
+      }
+    }
+  }
+}
+/* End About */
+/* Start FEATURES */
+.feat {
+  position: relative;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    @extend %before;
+    z-index: 1;
+    width: 500px; height: 500px;
+  }
+  &::before {
+    background: url(../../../img/features-shape-1.png);
+    top: 20%; left: 18%;
+  }
+  &::after {
+    background: url(../../../img/features-shape-2.png);
+    bottom: 0; right: 0;
+  }
+
+  .box {
+    background: $grayLow;
+    @include beforeBackground(135deg, $bgBody, $constHeader 50%);
+
+    .heading {
+      font: {
+        size: 24px;
+        weight: bold;
+      };
+
+      @include breakpoints(medium) {
+        font-size: 24px;
+      }
+
+      &:hover {
+        color: $purpleColor;
+      }
+
+    }
+
+    > a {
+      font-size: 12px;
+      @extend %gradText;
+      font-weight: bold;
+      width: max-content;
+      @include beforeBackground(135deg, $yellowColor, $orangeColor, $redColor);
+
+      &::Before {
+        height: 1px;
+        top: auto; bottom: 0;
+      }
+
+    }
+
+  }
+}
+/* End FEATURES */
+/* Start work */
+.work {
+  .shuffleFilter {
+    div {
+      @include prefixer(border-radius, $raduisMedium);
+      @include gradient(135deg, $yellowColor, $orangeColor, $redColor);
+      width: max-content;
+      padding: 20px 30px;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+      z-index: 1;
+      font: {
+        size: 20px;
+        weight: 600;
+      };
+      $borderWidth: 6px;
+
+      &::before {
+
+        @extend %before;
+        z-index: -1;
+        left: 50%; top: 50%;
+        translate: -50% -50%;
+        width: 100%; height: 100%;
+        @include prefixer(border-radius, $borderWidth + 2px);
+        @include prefixer(transition, var(--transtion));
+        background: $bgBody;
+      }
+
+      &.active::before {
+        width: calc(100% - $borderWidth);
+        height: calc(100% - $borderWidth);
+      }
+    }
+  }
+  .contents {
+    .content {
+      @include prefixer(transition, var(--transtion));
+
+      &.hide {
+        top: 0;
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        translate: 0 100px;
+      }
+
+      .text p {
+        max-width: 600px;
+      }
+    }
+  }
+}
+/* End work */
+/* Start Token */
+.token {
+
+  position: relative;
+
+  &::before {
+    @extend %before;
+    z-index: 1;
+    width: 500px; height: 500px;
+    background: url(../../../img/features-shape-2.png);
+    bottom: 0%; right: -1%;
+  }
+
+  .image {
+    background: $grayLow;
+  }
+  .box {
+    font-family: "Changa", sans-serif;
+    background: $grayLow;
+    padding-block: 12.5px;
+
+    .prec {
+      font-size: 15px;
+      @include breakpoints(medium) {
+        font-size: 20px;
+      }
+      ~ span {
+        font-size: 15px;
+      }
+    }
+  }
+}
+/* End Token */
+/* Start Son Carousel */
+.son-carousel {
+  
+  .son-outer {
+    @include prefixer(transition, var(--transtion));
+
+    .item {
+      @include overlay($white, .1);
+
+      .date {
+        @include gradient(135deg, $pinkColor, $purpleColor);
+        @include prefixer(border-radius, 20px);
+        font-weight: bold;
+        
+        h5 {
+          font-size: 30px !important;
+        }
+      }
+
+      &.sec .date {
+        @include gradient(135deg, $yellowColor, $orangeColor, $redColor);
+      }
+
+      .list {
+        li {
+          font-size: 15px;
+          font-weight: bold;
+          line-height: 1.5;
+          padding-left: 10px;
+          position: relative;
+
+          &::before {
+            @extend %before;
+            left: 0; top: 7px ;
+            @include circle(7px);
+            background: $white;
+          }
+
+        }
+      }
+
+    }
+
+  }
+
+  .indecators {
+    .but {
+      color: $orangeColor;
+      position: relative;
+      font-weight: bold;
+    }
+  }
+
+}
+/* End Son Carousel */
+/* Start Will Get */
+.will-get {
+
+  .image {
+
+    .content {
+      top: -100%;
+      @include overlay($orangeColor, .7);
+    }
+    .content.main {
+      @include overlay($purpleColor, .7);
+    }
+
+    .title {
+      bottom: 20px;
+    }
+
+    &:hover {
+
+      .content {
+        top: 0;
+      }
+
+      .title {
+        bottom: -50px;
+      }
+
+    }
+
+  }
+
+}
+/* End Will Get */

@@ -1,0 +1,141 @@
+header {
+  background: $constHeader;
+  @include prefixer (transition, var(--transtion));
+  position: relative;
+  z-index: 1000;
+
+  &.active {
+    background: $black;
+    position: sticky;
+    top: 0; left: 0;
+    translate: 0 -100%;
+    @include prefixer (animation, show var(--transtion) forwards);
+    @include keyFrame(show) {
+      100% {
+        translate: 0 0 ;
+      }
+    }
+  }
+
+  .links {
+
+    .link {
+
+      font-size: 15px;
+      position: relative;
+      padding-block: 40px;
+
+      a {
+
+        padding: 5px 0px;
+        letter-spacing: 1px;
+        @include beforeBackground(135deg, $pinkColor, $purpleColor);
+
+        &::Before {
+          height: 1px;
+          top: auto; bottom: 0;
+        }
+
+      }
+
+      &.toggle {
+
+        margin-inline-end: 20px;
+
+        i {
+          position: absolute;
+          right: -20px; top: 50%;
+          translate: 0 -60%;
+
+        }
+
+        .menu-toggle {
+          pointer-events: none;
+          position: absolute;
+          left: 0; top: 100%;
+          background-color: $black;
+          padding: 20px;
+          white-space: nowrap;
+          min-width: 270px;
+          translate: 0 10px;
+          z-index: -10;
+          opacity: 0;
+          @include prefixer(transition, var(--transtion));
+
+          a {
+
+            width: fit-content;
+            margin-bottom: 5px;
+            font-size: 14px;
+  
+            &:hover {
+              letter-spacing: 3px;
+            }
+  
+          }
+  
+        }
+
+        &:hover .menu-toggle {
+          opacity: 1;
+          pointer-events: unset;
+          z-index: unset;
+          translate: unset;
+        }
+
+      }
+
+    }
+
+
+    @media (width <= $large) {
+      & {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        order: 10;
+        @include prefixer(transition, var(--transtion))
+      }
+
+      &.show {
+        max-height: 500px;
+      }
+
+      .link {
+
+        padding-block: 10px;
+
+        &.toggle {
+
+          i {
+            top: 5px;
+            translate: 0 0;
+          }
+
+          .menu-toggle {
+            position: static;
+            opacity: 1; z-index: unset;
+            translate: 0 0;
+            max-height: 0;
+            padding: 0;
+            overflow: hidden;
+          }
+
+          &:hover .menu-toggle {
+            max-height: 250px;
+            padding: 20px 30px;
+            margin-block: 20px;
+          }
+
+        }
+
+      }
+    }
+
+  }
+
+  .logo {
+    translate: 0 30%;
+  }
+
+}

@@ -1,0 +1,63 @@
+:root {
+  --transtion: .7s;
+}
+
+/* Gloal Ruls */
+
+* {
+  @include prefixer (box-sizing, border-box, webkit moz);
+  line-height: 1.7;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: $bgBody;
+  color: $white;
+}
+ul {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+a {
+  text-decoration: none;
+  position: relative;
+  display: block;
+  color: inherit;
+  @include prefixer (transition, var(--transtion));
+}
+a:hover {
+  color: inherit;
+}
+@media (width <= $small) {
+  p {
+    font-size: 13px;
+  }
+}
+::-webkit-scrollbar {
+  width: 7.5px;
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar-track {
+  background: $black;
+}
+::-webkit-scrollbar-thumb {
+  @include gradient(100deg, $pinkColor, $purpleColor);
+}
+::-webkit-scrollbar-corner {
+  display: none;
+}
+::selection {
+  background-color: $orangeColor !important;
+  color: $black !important;
+}
+
+/* Hi System */
+
+$h-nums: 6;
+
+@for $i from 1 through $h-nums {
+  $constFonts: 6svw;
+  h#{$i} {
+    font-size: $constFonts - (($i - 1) * 1svw);
+    font-weight: bold;
+  }
+}
